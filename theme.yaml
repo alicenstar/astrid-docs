@@ -5,10 +5,16 @@ branding:
   linkColor: "#89a1ef"
   linkHoverColor: "#fffd82"
   headerColor: "#2d3047"
-  headerGradientEnd: "#fffd82"
+  headerGradientEnd: "#1a1b2e"
   sidebarColor: "#2d3047"
   sidebarGradientEnd: "#1a1b2e"
   logo: assets/logo.png
   favicon: assets/favicon.svg
   contact: "support@astrid.fit"
   background: minimal
+
+customCSS: |
+  [data-testid*="ai"] button, button[aria-label*="AI"], .ask-ai-button, .ai-button {
+    background-color: #fffd82 !important;
+    color: #2d3047 !important;
+  }
