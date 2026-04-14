@@ -3,6 +3,7 @@ branding:
   primaryColor: "#f92a82"
   secondaryColor: "#89a1ef"
   linkColor: "#89a1ef"
+  linkHoverColor: "#fffd82"
   headerColor: "#2d3047"
   headerGradientEnd: "#1a1b2e"
   sidebarColor: "#2d3047"
@@ -11,3 +12,8 @@ branding:
   favicon: assets/favicon.svg
   contact: "support@astrid.fit"
   background: minimal
+
+customCSS: |
+  .badge, .tag, .label { background-color: #fffd82; color: #2d3047; }
+  code { border-color: #fffd82; }
+  h2 { border-bottom-color: #fffd82; }
