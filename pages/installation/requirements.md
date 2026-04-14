@@ -1,94 +1,49 @@
----
-title: Embedded Cluster Installation Requirements
-visible_when:
-  entitlements:
-    - isEmbeddedClusterDownloadEnabled
----
+# System Requirements
 
-# Embedded Cluster Installation Requirements
+## Kubernetes (Helm Installation)
 
-Ensure your environment meets these requirements before installing with Embedded Cluster.
+| Requirement | Minimum |
+|-------------|---------|
+| Kubernetes version | 1.27+ |
+| CPU | 2 cores available |
+| Memory | 4 Gi available |
+| Storage class | Default storage class required |
+| Helm | v3.12+ |
 
-## System Requirements
+### Supported Distributions
 
-- Linux operating system
-- x86-64 architecture
-- systemd
-- At least 2GB of memory and 2 CPU cores
-- Disk write latency: Maximum P99 write latency of 10ms (required for etcd performance)
-- Root access or `sudo` privileges
-- Data directory requirements:
-  - 40Gi or more of total space
-  - Less than 80% full
-  - Default location: `/var/lib/embedded-cluster`
-  - Can be changed with the `--data-dir` flag during installation
+- EKS, GKE, AKS, OKE
+- k3s, RKE2, OpenShift OKD
+- Kind (development only)
 
-## Port Requirements
+### Unsupported Distributions
 
-The following ports must be open and available for Embedded Cluster installations.
+- Docker Desktop
+- MicroK8s
 
-### Ports Used by Local Processes
+### Network Requirements
 
-These ports must be available for local processes (no firewall openings needed):
+The cluster must have outbound access to:
 
-- 2379/TCP
-- 7443/TCP
-- 9099/TCP
-- 10248/TCP
-- 10257/TCP
-- 10259/TCP
+| Endpoint | Purpose |
+|----------|---------|
+| `proxy.replicated.com` | Container image proxy |
+| `replicated.app` | License validation and updates |
+| Docker Hub (`index.docker.io`) | Base images (if not using proxy) |
 
-### Ports for Node Communication
+{{#if entitlements.isAirgapSupported}}
+For air-gapped installations, all required images are included in the air gap bundle.
+{{/if}}
 
-These ports are used for bidirectional communication between nodes in multi-node installations. Create firewall openings between nodes for these ports:
+## Bare VM (Embedded Cluster Installation)
 
-- 2380/TCP
-- 4789/UDP
-- 6443/TCP
-- 9091/TCP
-- 9443/TCP
-- 10249/TCP
-- 10250/TCP
-- 10256/TCP
+| Requirement | Minimum |
+|-------------|---------|
+| OS | Linux x86-64 with systemd |
+| CPU | 2 cores |
+| Memory | 2 GB (4 GB recommended) |
+| Disk | 40 Gi at data directory, less than 80% full |
+| Disk latency | Max P99 write latency of 10ms |
+| Access | Root or sudo |
 
-### Admin Console Port
-
-Port **30000/TCP** must be open and accessible for the Admin Console. This port must also be accessible by nodes joining the cluster.
-
-If port 30000 is occupied, you can select a different port during installation using the `--admin-console-port` flag.
-
-### Local Artifact Mirror (LAM) Port
-
-Port **50000/TCP** must be open for the Local Artifact Mirror.
-
-If port 50000 is occupied, you can select a different port during installation.
-
-## Firewalld Configuration
-
-If Firewalld is enabled in your environment, Embedded Cluster will automatically configure it to allow necessary traffic. No additional configuration is required.
-
-The following ports are automatically opened in the default zone:
-
-- 6443/TCP
-- 10250/TCP
-- 9443/TCP
-- 2380/TCP
-- 4789/UDP
-
-## Additional System Directories
-
-In addition to the primary data directory, Embedded Cluster creates files in these locations:
-
-- `/etc/cni`
-- `/etc/k0s`
-- `/opt/cni`
-- `/opt/containerd`
-- `/run/calico`
-- `/run/containerd`
-- `/run/k0s`
-- `/var/lib/calico`
-- `/var/lib/cni`
-- `/var/lib/containers`
-- `/var/lib/kubelet`
-- `/var/log/embedded-cluster`
-- `/usr/local/bin/k0s`
+Embedded Cluster provisions Kubernetes automatically. No prior cluster is needed.
