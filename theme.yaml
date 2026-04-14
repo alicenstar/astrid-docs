@@ -7,7 +7,7 @@ branding:
   headerGradientEnd: "#1a1b2e"
   sidebarColor: "#2d3047"
   sidebarGradientEnd: "#1a1b2e"
-  contentBackgroundColor: "#e0e2db"
-  logo: assets/logo.svg
+  logo: assets/logo.png
   favicon: assets/favicon.svg
   contact: "support@astrid.fit"
+  background: minimal
