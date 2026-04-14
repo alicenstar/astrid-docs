@@ -15,15 +15,14 @@ branding:
 
 customCSS: |
   button.border-white\/30:has(svg path[d^="M12 3l1.5"]) {
-    background-color: #fffd82 !important;
     border-color: #fffd82 !important;
-    color: #2d3047 !important;
+    color: #fffd82 !important;
   }
   button.border-white\/30:has(svg path[d^="M12 3l1.5"]):hover {
-    background-color: #e6e47a !important;
+    background-color: rgba(255, 253, 130, 0.1) !important;
   }
   button.border-white\/30:has(svg path[d^="M12 3l1.5"]) svg {
-    color: #2d3047 !important;
+    color: #fffd82 !important;
   }
   pre.bg-gray-900 {
     border-left: 3px solid #fffd82 !important;
