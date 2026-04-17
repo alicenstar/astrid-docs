@@ -9,7 +9,7 @@ branding:
   sidebarColor: "#2d3047"
   sidebarGradientEnd: "#1a1b2e"
   logo: assets/logo.png
-  favicon: assets/favicon.svg
+  favicon: assets/favicon.png
   contact: "support@astrid.fit"
   background: minimal
 
